@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="514.0" prefWidth="770.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrentalsystem.controller.CarFormController">
+   <children>
+      <AnchorPane prefHeight="67.0" prefWidth="775.0" style="-fx-background-color: #2f3640;">
+         <children>
+            <Label layoutX="320.0" layoutY="20.0" text="MANAGE CAR" textFill="#f9ca24">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="7.0" layoutY="73.0" prefHeight="200.0" prefWidth="759.0" style="-fx-background-color: #dcdde1; -fx-background-radius: 20;">
+         <children>
+            <TextField fx:id="txtcarNum" layoutX="118.0" layoutY="47.0" />
+            <TextField fx:id="txtModel" layoutX="118.0" layoutY="88.0" prefHeight="25.0" prefWidth="149.0" />
+            <TextField fx:id="txtBrand" layoutX="118.0" layoutY="127.0" prefHeight="25.0" prefWidth="150.0" />
+            <TextField fx:id="txtYear" layoutX="118.0" layoutY="166.0" />
+            <Label layoutX="22.0" layoutY="51.0" text="Car Number">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="91.0" text="Model">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="130.0" text="Brand">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="169.0" text="Year">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtprice" layoutX="454.0" layoutY="8.0" />
+            <Label layoutX="351.0" layoutY="12.0" text="Price Per Day">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="351.0" layoutY="53.0" text="Status">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="286.0" layoutY="160.0" onAction="#btnAddOnAction" prefHeight="34.0" prefWidth="97.0" style="-fx-background-color: #00b894; -fx-background-radius: 10;" text="ADD" textFill="WHITE">
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="406.0" layoutY="160.0" onAction="#btnUpdateOnAction" prefHeight="34.0" prefWidth="97.0" style="-fx-background-color: #0984e3; -fx-background-radius: 10;" text="UPDATE" textFill="WHITE">
+               <font>
+                  <Font name="Arial Black" size="11.5" />
+               </font>
+               <padding>
+                  <Insets left="22.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton layoutX="523.0" layoutY="160.0" onAction="#btnClearOnAction" prefHeight="34.0" prefWidth="97.0" style="-fx-background-color: #f1c40f; -fx-background-radius: 10;" text="CLEAR" textFill="#fff9f9">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="22.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton layoutX="645.0" layoutY="160.0" onAction="#btnDeleteOnAction" prefHeight="34.0" prefWidth="97.0" style="-fx-background-color: #d63031; -fx-background-radius: 10;" text="DELETE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </JFXButton>
+            <Label layoutX="351.0" layoutY="91.0" text="Category Id">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="297.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/add.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="413.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/update.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="534.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/cler.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="653.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/delete.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="cmbCatId" layoutX="456.0" layoutY="88.0" prefWidth="150.0" promptText="choose..." />
+            <ComboBox fx:id="cmbStatus" layoutX="456.0" layoutY="49.0" prefWidth="150.0" promptText="choose..." />
+            <TextField fx:id="txtCarId" layoutX="118.0" layoutY="8.0" onAction="#idTextOnAction" />
+            <Label layoutX="22.0" layoutY="12.0" text="CarId">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="8.0" layoutY="278.0" prefHeight="232.0" prefWidth="760.0" style="-fx-background-color: #dcdde1; -fx-background-radius: 20;">
+         <children>
+            <TableView layoutX="9.0" layoutY="36.0" prefHeight="184.0" prefWidth="742.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="CarID" />
+                <TableColumn prefWidth="100.0" text="Car Number" />
+                  <TableColumn prefWidth="89.0" text="Model" />
+                  <TableColumn prefWidth="128.0" text="Brand" />
+                  <TableColumn prefWidth="84.0" text="Year" />
+                  <TableColumn prefWidth="100.0" text="Price Per Day" />
+                  <TableColumn prefWidth="182.0" text="Status" />
+              </columns>
+            </TableView>
+            <Label layoutX="13.0" layoutY="8.0" text="AVAILABLE CAR" textFill="#2f3640">
+               <font>
+                  <Font name="Arial Black" size="13.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+   </children>
+</AnchorPane>

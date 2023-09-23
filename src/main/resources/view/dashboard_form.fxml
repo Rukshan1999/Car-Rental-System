@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="592.0" prefWidth="852.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.carrentalsystem.controller.DashboardFormController">
+   <children>
+      <AnchorPane prefHeight="68.0" prefWidth="976.0" style="-fx-background-color: #2f3640;">
+         <children>
+            <Label layoutX="99.0" layoutY="20.0" prefHeight="29.0" prefWidth="151.0" text="DASHBOARD" textFill="#f9ca24">
+               <font>
+                  <Font name="Arial Black" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="61.0" fitWidth="77.0" layoutX="6.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/logo.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutY="68.0" prefHeight="524.0" prefWidth="195.0" style="-fx-background-color: #2f3640;">
+         <children>
+            <JFXButton layoutX="15.0" layoutY="22.0" onAction="#btnCustomerOnAction" prefHeight="40.0" prefWidth="166.0" style="-fx-background-color: #f9ca24;" text="CUSTOMER">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton layoutX="15.0" layoutY="85.0" onAction="#btnCarTypeOnAction" prefHeight="40.0" prefWidth="166.0" style="-fx-background-color: #f9ca24;" text="CAR TYPE">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton layoutX="15.0" layoutY="149.0" onAction="#btnCarOnAction" prefHeight="40.0" prefWidth="166.0" style="-fx-background-color: #f9ca24;" text="CAR">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </JFXButton>
+            <JFXButton layoutX="15.0" layoutY="213.0" onAction="#btnRentOnAction" prefHeight="40.0" prefWidth="166.0" style="-fx-background-color: #f9ca24; -fx-border-radius: 20;" text="RENT">
+               <font>
+                  <Font name="Arial Black" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </JFXButton>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="22.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/cus.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="22.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/cartype.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="23.0" layoutY="152.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/car.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="21.0" layoutY="216.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../image/rent.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="node" layoutX="201.0" layoutY="74.0" prefHeight="518.0" prefWidth="775.0" style="-fx-background-color: #dfe6e9; -fx-border-radius: 50;">
+         <children>
+            <AnchorPane layoutX="25.0" layoutY="22.0" prefHeight="476.0" prefWidth="726.0" style="-fx-background-color: #2f3640; -fx-background-radius: 30;">
+               <children>
+                  <Label layoutX="270.0" layoutY="49.0" prefHeight="47.0" prefWidth="186.0" text="WELCOME" textFill="#f9ca24">
+                     <font>
+                        <Font name="Arial Black" size="32.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="257.0" fitWidth="364.0" layoutX="181.0" layoutY="164.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/logo.png" />
+                     </image>
+                  </ImageView>
+                  <Label alignment="CENTER" layoutX="270.0" layoutY="96.0" prefHeight="47.0" prefWidth="186.0" text="TO" textFill="#f9ca24">
+                     <font>
+                        <Font name="Arial Black" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
+   </children>
+</AnchorPane>
