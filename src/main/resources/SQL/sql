@@ -1,0 +1,50 @@
+CREATE TABLE user(
+	userID int primary KEY,
+   	userName VARCHAR(100) NOT NULL,
+    	password VARCHAR(8) NOT NULL
+
+);
+
+
+CREATE TABLE carcategory(
+	catid varchar(20) primary KEY,
+    	name varchar(100) NOT NULL
+);
+
+CREATE TABLE car(
+	carid int primary KEY,
+	vehinumber VARCHAR(10) UNIQUE NOT NULL,
+	model VARCHAR(100) NOT NULL,
+	brand VARCHAR(100) NOT NULL,
+	year VARCHAR(4) NOT NULL,
+	priceperday DOUBLE NOT NULL,
+	status VARCHAR(100) NOT NULL,
+	catid int NOT NULL,
+	FOREIGN KEY (catid) REFERENCE carcategory(catid)
+
+);
+
+CREATE TABLE customer(
+	custid int primary KEY,
+	custTitle VARCHAR(5) NOT NULL,
+	custName VARCHAR(50) NOT NULL,
+	custNic VARCHAR(12) UNIQUE NOT NULL,
+	address VARCHAR(70) NOT NULL,
+	mobile VARCHAR(10) UNIQUE NOT NULL
+
+);
+
+CREATE TABLE rent(
+	rentid INT primery key,
+	fromdate DATE NOT NULL,
+	todate DATE NOT NULL,
+	perdayrent DOUBLE NOT NULL,
+	total DOUBLE NOT NULL,
+	balance DOUBLE NOT NULL,
+	advancedpayment DOUBLE NOT NULL,
+	custid INT NOT NULL,
+	carid INT NOT NULL,
+	FOREIGN KEY (custid) REFERENCE customers(custid),
+	FOREIGN KEY (carid) REFERENCE car(carid)
+
+);
