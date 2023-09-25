@@ -20,4 +20,6 @@ public interface CarService extends SuperService {
 
 
     List<String> getAllAvailableCarIds(Connection connection);
+
+    List<CarDto> getAllCarsTable();
 }

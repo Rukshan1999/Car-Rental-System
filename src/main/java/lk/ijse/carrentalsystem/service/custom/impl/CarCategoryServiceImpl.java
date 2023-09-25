@@ -20,8 +20,8 @@ public class CarCategoryServiceImpl implements CarCategoryService {
 
         //Convert the Dto to entity
         CarCategoryEntity carCategoryEntity = new CarCategoryEntity();
-        carCategoryEntity.setCatid(carCategoryDto.getCarCatId());
-        carCategoryEntity.setName(carCategoryDto.getCatName());
+        carCategoryEntity.setCatid(carCategoryDto.getCatid());
+        carCategoryEntity.setName(carCategoryDto.getName());
 
         return carCategoryDao.addCarCategory(carCategoryEntity,connection);
     }
@@ -34,8 +34,8 @@ public class CarCategoryServiceImpl implements CarCategoryService {
     @Override
     public boolean updateCarCategory(CarCategoryDto carCategoryDto, Connection connection) {
         CarCategoryEntity entity =new CarCategoryEntity();
-        entity.setCatid(carCategoryDto.getCarCatId());
-        entity.setName(carCategoryDto.getCatName());
+        entity.setCatid(carCategoryDto.getCatid());
+        entity.setName(carCategoryDto.getName());
         return carCategoryDao.updatCarCategory(entity,connection);
     }
 
@@ -56,5 +56,11 @@ public class CarCategoryServiceImpl implements CarCategoryService {
 
         return categoryIds;
 
+    }
+
+    @Override
+    public List<CarCategoryDto> getAllCarTypes() {
+        List<CarCategoryDto> carCategoryDtoList;
+        return carCategoryDtoList =carCategoryDao.getAllCarCategories();
     }
 }

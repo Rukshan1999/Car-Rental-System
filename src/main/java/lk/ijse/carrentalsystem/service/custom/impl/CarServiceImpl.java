@@ -65,4 +65,10 @@ public class CarServiceImpl implements CarService {
         return FXCollections.observableArrayList(allAvilableCarIds);
     }
 
+    @Override
+    public List<CarDto> getAllCarsTable() {
+        List<CarDto> carDtoList;
+        return  carDtoList = carDao.getAllCarsTable();
+    }
+
 }

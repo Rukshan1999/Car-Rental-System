@@ -3,7 +3,6 @@ package lk.ijse.carrentalsystem.controller;
 import com.jfoenix.controls.JFXButton;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 
@@ -14,7 +13,12 @@ import static javafx.fxml.FXMLLoader.load;
 
 public class DashboardFormController {
 
-    CustomerFormController customerFormController= new CustomerFormController();
+    CustomerFormController customerFormController = new CustomerFormController();
+    CarTypeFormController carTypeFormController =new CarTypeFormController();
+
+    HomeFormController homeFormController = new HomeFormController();
+
+    CarFormController carFormController = new CarFormController();
     RentFormController rentFormController = new RentFormController();
     public AnchorPane node;
     public JFXButton btnHome;
@@ -41,6 +45,7 @@ public class DashboardFormController {
 
         this.node.getChildren().clear();
         this.node.getChildren().add(root);
+        carTypeFormController.initialize();
     }
 
     public void btnCarOnAction(ActionEvent actionEvent) throws IOException {
@@ -48,6 +53,7 @@ public class DashboardFormController {
 
         this.node.getChildren().clear();
         this.node.getChildren().add(root);
+        carFormController.initialize();
     }
 
     public void btnRentOnAction(ActionEvent actionEvent) throws IOException {
@@ -57,7 +63,18 @@ public class DashboardFormController {
 
         this.node.getChildren().clear();
         this.node.getChildren().add(root);
+        rentFormController.initialize();
 
 
+    }
+
+    @FXML
+    void btnHomeOnAction(ActionEvent event) throws IOException {
+        Parent root = load(this.getClass().getResource("/view/home_form.fxml"));
+
+
+        this.node.getChildren().clear();
+        this.node.getChildren().add(root);
+        homeFormController.initialize();
     }
 }

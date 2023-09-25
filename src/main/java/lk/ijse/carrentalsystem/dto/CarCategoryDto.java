@@ -8,6 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class CarCategoryDto implements SuperDto{
-    private String carCatId;
-    private String catName;
+    private String catid;
+    private String name;
 }

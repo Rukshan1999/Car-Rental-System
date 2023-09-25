@@ -1,6 +1,8 @@
 package lk.ijse.carrentalsystem.dao.custom.impl;
 
 import lk.ijse.carrentalsystem.dao.custom.CarDao;
+import lk.ijse.carrentalsystem.db.DbConnection;
+import lk.ijse.carrentalsystem.dto.CarDto;
 import lk.ijse.carrentalsystem.entity.CarEntity;
 
 import java.sql.Connection;
@@ -143,6 +145,34 @@ public class CarDaoImpl implements CarDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public List<CarDto> getAllCarsTable() {
+        List<CarDto> carDtoList = new ArrayList<>();
+        String  sql = "SELECT * FROM car";
+
+        try {
+            Connection connection = DbConnection.getInstance().getConnection();
+            PreparedStatement pst = connection.prepareStatement(sql);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()){
+                CarDto dto =new CarDto();
+                dto.setCarid(rs.getInt("carid"));
+                dto.setVehinumber(rs.getString("vehinumber"));
+                dto.setModel(rs.getString("model"));
+                dto.setBrand(rs.getString("brand"));
+                dto.setYear(rs.getString("year"));
+                dto.setPricePerDay(rs.getDouble("priceperday"));
+                dto.setStatus(rs.getString("status"));
+                dto.setCatid(rs.getString("catid"));
+                carDtoList.add(dto);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return carDtoList;
     }
 
 

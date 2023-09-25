@@ -11,6 +11,7 @@ import lk.ijse.carrentalsystem.service.custom.CustomerService;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
@@ -67,6 +68,12 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public boolean deleteCar(int custid, Connection connection) {
         return customerDao.deleteCustomer(custid,connection);
+    }
+
+    @Override
+    public List<CustomerDto> getAllCustomers() {
+        List<CustomerDto> customerDtoList;
+        return  customerDtoList = customerDao.getAllCustomersTable();
     }
 
 

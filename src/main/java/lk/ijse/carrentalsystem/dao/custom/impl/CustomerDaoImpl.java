@@ -1,8 +1,8 @@
 package lk.ijse.carrentalsystem.dao.custom.impl;
 
 import lk.ijse.carrentalsystem.dao.custom.CustomerDao;
+import lk.ijse.carrentalsystem.db.DbConnection;
 import lk.ijse.carrentalsystem.dto.CustomerDto;
-import lk.ijse.carrentalsystem.entity.CarCategoryEntity;
 import lk.ijse.carrentalsystem.entity.CustomerEntity;
 
 import java.sql.Connection;
@@ -10,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import java.util.logging.Level;
@@ -18,6 +19,7 @@ import java.util.logging.Logger;
 
 
 public class CustomerDaoImpl implements CustomerDao {
+    private Connection con;
 
     public static final Logger LOGGER = Logger.getLogger(CustomerDaoImpl.class.getName());
 
@@ -121,6 +123,37 @@ public class CustomerDaoImpl implements CustomerDao {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<CustomerDto> getAllCustomersTable() {
+        List<CustomerDto> customerDtoList = new ArrayList<>();
+        String sql = "SELECT * FROM customer";
+
+        try {
+            Connection connection = DbConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                CustomerDto dto = new CustomerDto();
+                dto.setCustid(resultSet.getInt("custid"));
+                dto.setCustTitle(resultSet.getString("custTitle"));
+                dto.setCustName(resultSet.getString("custName"));
+                dto.setCustNic(resultSet.getString("custNic"));
+                dto.setAddress(resultSet.getString("address"));
+                dto.setMobile(resultSet.getString("mobile"));
+
+
+                customerDtoList.add(dto);
+                //connection.close();
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return customerDtoList;
+    }
+
 
     @Override
     public boolean updateCustomer(CustomerEntity entity, Connection connection) {

@@ -1,12 +1,7 @@
 package lk.ijse.carrentalsystem.dao;
 
-import lk.ijse.carrentalsystem.dao.custom.impl.CarCategoryDaoImpl;
-import lk.ijse.carrentalsystem.dao.custom.impl.CarDaoImpl;
-import lk.ijse.carrentalsystem.dao.custom.impl.CustomerDaoImpl;
-import lk.ijse.carrentalsystem.dao.custom.impl.RentDaoImpl;
+import lk.ijse.carrentalsystem.dao.custom.impl.*;
 import lk.ijse.carrentalsystem.dao.util.DaoType;
-
-import static lk.ijse.carrentalsystem.service.util.ServiceType.*;
 
 public class DaoFactory {
     private static DaoFactory instance;
@@ -33,6 +28,10 @@ public class DaoFactory {
 
             case RENT:{
                 return (T) new RentDaoImpl();
+            }
+
+            case HOME:{
+                return (T) new HomeDaoImpl();
             }
 
             //CarDaoImpl

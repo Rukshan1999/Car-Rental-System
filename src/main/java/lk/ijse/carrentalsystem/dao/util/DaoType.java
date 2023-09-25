@@ -1,6 +1,6 @@
 package lk.ijse.carrentalsystem.dao.util;
 
 public enum DaoType {
-    RENT,CAR,CARCATEGORY,CUSTOMER
+    HOME,RENT,CAR,CARCATEGORY,CUSTOMER
 
 }

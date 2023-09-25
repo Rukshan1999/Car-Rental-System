@@ -1,9 +1,6 @@
 package lk.ijse.carrentalsystem.service;
 
-import lk.ijse.carrentalsystem.service.custom.impl.CarCategoryServiceImpl;
-import lk.ijse.carrentalsystem.service.custom.impl.CarServiceImpl;
-import lk.ijse.carrentalsystem.service.custom.impl.CustomerServiceImpl;
-import lk.ijse.carrentalsystem.service.custom.impl.RentServiceImpl;
+import lk.ijse.carrentalsystem.service.custom.impl.*;
 import lk.ijse.carrentalsystem.service.util.ServiceType;
 
 public class ServiceFactory {
@@ -34,6 +31,10 @@ public class ServiceFactory {
 
             case RENT: {
                 return (T) new RentServiceImpl();
+            }
+
+            case HOME: {
+                return (T) new HomeServiceImpl();
             }
             default:
                 //return null;

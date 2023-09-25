@@ -1,6 +1,7 @@
 package lk.ijse.carrentalsystem.dao.custom;
 
 import lk.ijse.carrentalsystem.dao.SuperDao;
+import lk.ijse.carrentalsystem.dto.CarCategoryDto;
 import lk.ijse.carrentalsystem.entity.CarCategoryEntity;
 
 import java.sql.Connection;
@@ -16,4 +17,6 @@ public interface CarCategoryDao extends SuperDao {
     boolean deleteCarCategory(int catId, Connection connection);
 
     List<CarCategoryEntity> getAllCategories(Connection connection);
+
+    List<CarCategoryDto> getAllCarCategories();
 }

@@ -1,18 +1,14 @@
 package lk.ijse.carrentalsystem.service.custom.impl;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import lk.ijse.carrentalsystem.dao.DaoFactory;
 import lk.ijse.carrentalsystem.dao.custom.CarDao;
 import lk.ijse.carrentalsystem.dao.custom.RentDao;
 import lk.ijse.carrentalsystem.dao.util.DaoType;
-import lk.ijse.carrentalsystem.db.DbConnection;
 import lk.ijse.carrentalsystem.dto.RentDto;
 import lk.ijse.carrentalsystem.service.custom.RentService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.util.Collection;
 import java.util.List;
 
 public class RentServiceImpl implements RentService {
@@ -54,5 +50,11 @@ public class RentServiceImpl implements RentService {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    @Override
+    public List<RentDto> getAllRentDetails() {
+        List<RentDto> rentDtoList;
+        return rentDtoList = rentDao.getAllRentDetails();
     }
 }

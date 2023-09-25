@@ -5,7 +5,7 @@ import lk.ijse.carrentalsystem.dto.CustomerDto;
 import lk.ijse.carrentalsystem.entity.CustomerEntity;
 
 import java.sql.Connection;
-import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 public interface CustomerDao extends SuperDao{
@@ -20,4 +20,7 @@ public interface CustomerDao extends SuperDao{
     List<CustomerEntity> getAllCustomers(Connection connection);
 
     boolean deleteCustomer(int custid, Connection connection);
+
+
+    List<CustomerDto> getAllCustomersTable();
 }

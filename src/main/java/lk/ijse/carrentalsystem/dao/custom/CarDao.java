@@ -1,6 +1,7 @@
 package lk.ijse.carrentalsystem.dao.custom;
 
 import lk.ijse.carrentalsystem.dao.SuperDao;
+import lk.ijse.carrentalsystem.dto.CarDto;
 import lk.ijse.carrentalsystem.entity.CarEntity;
 
 import java.sql.Connection;
@@ -21,4 +22,6 @@ public interface CarDao extends SuperDao {
     List<String> getAllAvailableCarIds(Connection connection);
 
     boolean updateCarStatus(Integer carid, String notAvailable, Connection connection);
+
+    List<CarDto> getAllCarsTable();
 }

@@ -6,6 +6,7 @@ import lk.ijse.carrentalsystem.service.SuperService;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Collection;
 import java.util.List;
 
 public interface CustomerService extends SuperService {
@@ -19,4 +20,6 @@ public interface CustomerService extends SuperService {
     List<String> getAllCategoryIds(Connection connection);
 
     boolean deleteCar(int custid, Connection connection);
+
+    List<CustomerDto> getAllCustomers();
 }

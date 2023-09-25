@@ -5,12 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.carrentalsystem.db.DbConnection;
 import lk.ijse.carrentalsystem.dto.RentDto;
+import lk.ijse.carrentalsystem.service.ServiceFactory;
 import lk.ijse.carrentalsystem.service.custom.CarService;
 import lk.ijse.carrentalsystem.service.custom.CustomerService;
 import lk.ijse.carrentalsystem.service.custom.RentService;
-import lk.ijse.carrentalsystem.service.ServiceFactory;
 import lk.ijse.carrentalsystem.service.util.ServiceType;
 
 import java.sql.Connection;
@@ -18,6 +19,9 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.List;
+import java.util.logging.Level;
+
+import static lk.ijse.carrentalsystem.dao.custom.impl.CustomerDaoImpl.LOGGER;
 
 public class RentFormController {
 
@@ -48,6 +52,38 @@ public class RentFormController {
     @FXML
     private TextField txtRentId;
 
+    @FXML
+    private TableView<RentDto> rentTable;
+
+    @FXML
+    private TableColumn<RentDto, Double> ColPdR;
+
+
+    @FXML
+    private TableColumn<RentDto, Double> colAd;
+
+    @FXML
+    private TableColumn<RentDto, Double> colBal;
+
+    @FXML
+    private TableColumn<RentDto, Integer> colCarid;
+
+    @FXML
+    private TableColumn<RentDto, Integer> colCustid;
+
+    @FXML
+    private TableColumn<RentDto, LocalDate> colFd;
+
+    @FXML
+    private TableColumn<RentDto, LocalDate> colTd;
+
+    @FXML
+    private TableColumn<RentDto, Double> colTot;
+
+    @FXML
+    private TableColumn<RentDto, Integer> colrentid;
+
+
     RentService rentService = ServiceFactory.getInstance().getService(ServiceType.RENT);
     CustomerService customerService = ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
     CarService carService =ServiceFactory.getInstance().getService(ServiceType.CAR);
@@ -57,7 +93,30 @@ public class RentFormController {
         // Initialize and configure combo boxes
         populateCustIdCmoboBox();
         populateCarIdComboBox();
+        getAllRentDetails();
 
+
+    }
+
+    private void getAllRentDetails() {
+        try{
+            List<RentDto> rentDtoList = rentService.getAllRentDetails();
+            colrentid.setCellValueFactory(new PropertyValueFactory<>("rentid"));
+            colFd.setCellValueFactory(new PropertyValueFactory<>("fromdate"));
+            colTd.setCellValueFactory(new PropertyValueFactory<>("todate"));
+            ColPdR.setCellValueFactory(new PropertyValueFactory<>("perdayrent"));
+            colTot.setCellValueFactory(new PropertyValueFactory<>("total"));
+            colBal.setCellValueFactory(new PropertyValueFactory<>("balance"));
+            colAd.setCellValueFactory(new PropertyValueFactory<>("advancedpayment"));
+            colCustid.setCellValueFactory(new PropertyValueFactory<>("custid"));
+            colCarid.setCellValueFactory(new PropertyValueFactory<>("carid"));
+
+            ObservableList<RentDto> rentdata = FXCollections.observableArrayList(rentDtoList);
+
+            rentTable.setItems(rentdata);
+        }catch (Exception e){
+            LOGGER.log(Level.SEVERE, "An error occurred: " + e.getMessage(), e);
+        }
     }
 
     private void populateCarIdComboBox() {

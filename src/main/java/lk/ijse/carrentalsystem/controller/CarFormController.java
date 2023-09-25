@@ -1,14 +1,11 @@
 package lk.ijse.carrentalsystem.controller;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.carrentalsystem.db.DbConnection;
 import lk.ijse.carrentalsystem.dto.CarDto;
 import lk.ijse.carrentalsystem.entity.CarEntity;
@@ -21,10 +18,14 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+
+import static lk.ijse.carrentalsystem.dao.custom.impl.CustomerDaoImpl.LOGGER;
 
 
 public class CarFormController {
 
+    public TableColumn colcatid;
     @FXML
     private ComboBox<String> cmbStatus;
 
@@ -52,12 +53,39 @@ public class CarFormController {
     @FXML
     private TextField txtstatus;
 
+    @FXML
+    private TableView<CarDto> carTable;
+
+
+    @FXML
+    private TableColumn<CarDto, String> colbrand;
+
+    @FXML
+    private TableColumn<CarDto, Integer> colcarid;
+
+    @FXML
+    private TableColumn<CarDto, String > colmodel;
+
+    @FXML
+    private TableColumn<CarDto, Double> colppd;
+
+    @FXML
+    private TableColumn<CarDto, String> colstatus;
+
+    @FXML
+    private TableColumn<CarDto, String> colvehinum;
+
+    @FXML
+    private TableColumn<CarDto, String> colyear;
+
     CarService carService = (CarService) ServiceFactory.getInstance().getService(ServiceType.CAR);
     CarCategoryService carCategoryService =(CarCategoryService) ServiceFactory.getInstance().getService(ServiceType.CARCATEGORY);
 
     public void initialize() {
         populateStatusComboBox();
         populateCategoryIdComboBox();
+        getAllCarsTable();
+
     }
 
     private void populateStatusComboBox() {
@@ -123,6 +151,7 @@ public class CarFormController {
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
+
         clearFields();
     }
 
@@ -230,4 +259,26 @@ public class CarFormController {
 
     }
 
+   /* public void initialize2() {
+        getAllCarsTable();
+    }*/
+
+    private void getAllCarsTable() {
+        try {
+            List<CarDto> carDtoList = carService.getAllCarsTable();
+            colcarid.setCellValueFactory(new PropertyValueFactory<>("carid"));
+            colvehinum.setCellValueFactory(new PropertyValueFactory<>("vehinumber"));
+            colmodel.setCellValueFactory(new PropertyValueFactory<>("model"));
+            colbrand.setCellValueFactory(new PropertyValueFactory<>("brand"));
+            colyear.setCellValueFactory(new PropertyValueFactory<>("year"));
+            colppd.setCellValueFactory(new PropertyValueFactory<>("priceperday"));
+            colstatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+            colcatid.setCellValueFactory(new PropertyValueFactory<>("catid"));
+
+            ObservableList<CarDto> cardata = FXCollections.observableArrayList(carDtoList);
+            carTable.setItems(cardata);
+        }catch (Exception e){
+            LOGGER.log(Level.SEVERE, "An error occurred: " + e.getMessage(), e);
+        }
+    }
 }

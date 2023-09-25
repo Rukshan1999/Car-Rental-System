@@ -1,10 +1,11 @@
 package lk.ijse.carrentalsystem.controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import lk.ijse.carrentalsystem.db.DbConnection;
 import lk.ijse.carrentalsystem.dto.CarCategoryDto;
 import lk.ijse.carrentalsystem.dto.CustomerDto;
@@ -16,15 +17,26 @@ import lk.ijse.carrentalsystem.service.util.ServiceType;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+
+import static lk.ijse.carrentalsystem.dao.custom.impl.CustomerDaoImpl.LOGGER;
 
 public class CarTypeFormController {
 
+    public TableView<CarCategoryDto> carCatTable;
     @FXML
     private TextField txtCatId;
 
     @FXML
     private TextField txtCatName;
+
+    @FXML
+    private TableColumn<CarCategoryDto, String > colname;
+
+    @FXML
+    private TableColumn<CarCategoryDto, String > colid;
 
 
     private CarCategoryService carCategoryService;
@@ -63,6 +75,7 @@ public class CarTypeFormController {
 
     @FXML
     void btnClearOnAction(ActionEvent event) {
+
         clearFields();
     }
 
@@ -154,4 +167,21 @@ public class CarTypeFormController {
         }
     }
 
+    public void initialize() {
+        getAllCarTypes();
+    }
+
+    private void getAllCarTypes() {
+        try{
+            List<CarCategoryDto> carTypeDtoList = carCategoryService.getAllCarTypes();
+            colid.setCellValueFactory(new PropertyValueFactory<>("catid"));
+            colname.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+            ObservableList<CarCategoryDto> carCatData = FXCollections.observableArrayList(carTypeDtoList);
+            carCatTable.setItems(carCatData);
+
+        }catch (Exception e) {
+            LOGGER.log(Level.SEVERE, "An error occurred: " + e.getMessage(), e);
+        }
+    }
 }

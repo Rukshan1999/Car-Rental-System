@@ -1,6 +1,7 @@
 package lk.ijse.carrentalsystem.dao.custom.impl;
 
 import lk.ijse.carrentalsystem.dao.custom.RentDao;
+import lk.ijse.carrentalsystem.db.DbConnection;
 import lk.ijse.carrentalsystem.dto.RentDto;
 
 import java.sql.*;
@@ -30,5 +31,35 @@ public class RentDaoImpl implements RentDao {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public List<RentDto> getAllRentDetails() {
+        List<RentDto> rentDtoList = new ArrayList<>();
+        String sql = "SELECT * FROM rent";
+
+        try {
+            Connection connection = DbConnection.getInstance().getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()){
+                RentDto dto = new RentDto();
+                dto.setRentid(resultSet.getInt("rentid"));
+                dto.setFromdate(resultSet.getDate("fromdate").toLocalDate());
+                dto.setTodate(resultSet.getDate("todate").toLocalDate());
+                dto.setPerdayrent(resultSet.getDouble("perdayrent"));
+                dto.setTotal(resultSet.getDouble("total"));
+                dto.setBalance(resultSet.getDouble("balance"));
+                dto.setAdvancedpayment(resultSet.getDouble("advancedpayment"));
+                dto.setCustid(resultSet.getInt("custid"));
+                dto.setCarid(resultSet.getInt("carid"));
+
+                rentDtoList.add(dto);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return rentDtoList;
     }
 }

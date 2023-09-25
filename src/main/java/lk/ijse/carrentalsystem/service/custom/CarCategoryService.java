@@ -1,6 +1,7 @@
 package lk.ijse.carrentalsystem.service.custom;
 
 import lk.ijse.carrentalsystem.dto.CarCategoryDto;
+import lk.ijse.carrentalsystem.dto.CustomerDto;
 import lk.ijse.carrentalsystem.entity.CarCategoryEntity;
 import lk.ijse.carrentalsystem.service.SuperService;
 
@@ -18,4 +19,6 @@ public interface CarCategoryService extends SuperService {
     boolean deleteCarCategory(int catId, Connection connection);
 
     List<String> getAllCategoryIds(Connection connection);
+
+    List<CarCategoryDto> getAllCarTypes();
 }

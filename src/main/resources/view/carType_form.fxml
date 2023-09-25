@@ -96,10 +96,10 @@
       </AnchorPane>
       <AnchorPane layoutX="7.0" layoutY="278.0" prefHeight="232.0" prefWidth="759.0" style="-fx-background-color: #dcdde1; -fx-background-radius: 20;">
          <children>
-            <TableView layoutX="25.0" layoutY="36.0" prefHeight="184.0" prefWidth="353.0">
+            <TableView fx:id="carCatTable" layoutX="179.0" layoutY="34.0" prefHeight="184.0" prefWidth="353.0">
                <columns>
-                  <TableColumn prefWidth="153.0" text="CategoryId" />
-                  <TableColumn prefWidth="199.0" text="Name" />
+                  <TableColumn fx:id="colid" prefWidth="153.0" text="CategoryId" />
+                  <TableColumn fx:id="colname" prefWidth="199.0" text="Name" />
                </columns>
             </TableView>
             <Label layoutX="13.0" layoutY="8.0" text="AVAILABLE CAR" textFill="#2f3640">

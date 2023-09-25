@@ -1,9 +1,12 @@
 package lk.ijse.carrentalsystem.controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.carrentalsystem.db.DbConnection;
 import lk.ijse.carrentalsystem.dto.CustomerDto;
@@ -14,6 +17,7 @@ import lk.ijse.carrentalsystem.service.util.ServiceType;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,6 +79,8 @@ public class CustomerFormController {
 
     @FXML
     private TableColumn<CustomerDto, String> colMobile;
+
+    private ObservableList<CustomerDto> customerData = FXCollections.observableArrayList();
 
 
     private final CustomerService customerService = (CustomerService) ServiceFactory.getInstance().getService(ServiceType.CUSTOMER);
@@ -220,11 +226,26 @@ public class CustomerFormController {
         }
     }
 
-    public void initialize() {
-        getAllCustomers();
+
+    public void getAllCustomers() {
+        try {
+            List<CustomerDto> customerDtoList = customerService.getAllCustomers();
+            colId.setCellValueFactory(new PropertyValueFactory<>("custid"));
+            colTitle.setCellValueFactory(new PropertyValueFactory<>("custTitle"));
+            colName.setCellValueFactory(new PropertyValueFactory<>("custName"));
+            colNic.setCellValueFactory(new PropertyValueFactory<>("custNic"));
+            colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+            colMobile.setCellValueFactory(new PropertyValueFactory<>("mobile"));
+
+            ObservableList<CustomerDto> customerdata = FXCollections.observableArrayList(customerDtoList);
+            customerTable.setItems(customerdata);
+        }catch (Exception e){
+            LOGGER.log(Level.SEVERE, "An error occurred: " + e.getMessage(), e);
+        }
+
     }
 
-    private void getAllCustomers() {
-
+    public void initialize() {
+        getAllCustomers();
     }
 }

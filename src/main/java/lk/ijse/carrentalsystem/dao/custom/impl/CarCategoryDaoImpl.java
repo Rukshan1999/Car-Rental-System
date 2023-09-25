@@ -1,7 +1,10 @@
 package lk.ijse.carrentalsystem.dao.custom.impl;
 
 import lk.ijse.carrentalsystem.dao.custom.CarCategoryDao;
+import lk.ijse.carrentalsystem.db.DbConnection;
+import lk.ijse.carrentalsystem.dto.CarCategoryDto;
 import lk.ijse.carrentalsystem.entity.CarCategoryEntity;
+import lk.ijse.carrentalsystem.entity.CustomerEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -113,5 +116,27 @@ public class CarCategoryDaoImpl implements CarCategoryDao {
             throw new RuntimeException(e);
         }
         return categoryList;
+    }
+
+    @Override
+    public List<CarCategoryDto> getAllCarCategories() {
+        List<CarCategoryDto> carCategoryDtoList = new ArrayList<>();
+
+        String sql = "SELECT * FROM carcategory";
+        try {
+            Connection connection = DbConnection.getInstance().getConnection();
+            PreparedStatement pstm = connection.prepareStatement(sql);
+            ResultSet rs = pstm.executeQuery();
+            while (rs.next()){
+                CarCategoryDto dto =new CarCategoryDto();
+                dto.setCatid(rs.getString("catid"));
+                dto.setName(rs.getString("name"));
+
+                carCategoryDtoList.add(dto);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return carCategoryDtoList;
     }
 }
