@@ -1,6 +1,7 @@
 package lk.ijse.carrentalsystem.controller;
 
 import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Parent;
@@ -22,6 +23,8 @@ public class DashboardFormController {
     RentFormController rentFormController = new RentFormController();
     public AnchorPane node;
     public JFXButton btnHome;
+
+
 
     @FXML
     private AnchorPane cus_form;
@@ -76,5 +79,10 @@ public class DashboardFormController {
         this.node.getChildren().clear();
         this.node.getChildren().add(root);
         homeFormController.initialize();
+    }
+
+    @FXML
+    void btnLogOutOnAction(ActionEvent event) {
+        Platform.exit();
     }
 }

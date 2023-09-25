@@ -34,6 +34,10 @@ public class DaoFactory {
                 return (T) new HomeDaoImpl();
             }
 
+            case LOGIN:{
+                return (T) new LoginDaoImpl();
+            }
+
             //CarDaoImpl
             default:
                 throw new RuntimeException();

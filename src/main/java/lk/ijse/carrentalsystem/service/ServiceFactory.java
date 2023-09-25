@@ -36,6 +36,10 @@ public class ServiceFactory {
             case HOME: {
                 return (T) new HomeServiceImpl();
             }
+
+            case LOGIN: {
+                return (T) new LoginServiceImpl();
+            }
             default:
                 //return null;
                 throw new RuntimeException("invalid service type!");
